@@ -37,6 +37,9 @@ group :development, :test do
   gem 'launchy'
   gem 'capybara'
   gem 'rspec-rails'
+  gem 'closeio'
+  gem 'dotenv-rails'
+  gem 'hashie'
 end
 
 group :development do
