@@ -1,15 +1,10 @@
 require 'rails_helper'
 
 CURRENT_TRACKS = [
-  '2017 Portland September 5 - March 23: C#/.NET track',
-  # '2017 Portland September 5 - March 23: CSS/Design track',
-  # '2017 Portland September 6 - December 13: Part-time, evening Intro to Programming',
-  # '2017 Portland October 9 - April 27: CSS/React track',
-  # '2017 Portland November 13 - June 1: Java/Android track',
-  # '2017 Seattle September 5 - March 23: C#/.NET track',
-  # '2017 Seattle October 9 - April 27: Ruby/Rails track',
-  # '2017 Seattle October 9 - January 31: Part-time, evening Intro to Programming',
-  # '2017 Seattle November 13 - June 1: C#/.NET track'
+  '2017 Portland October 9 - April 27: CSS/React track',
+  '2017 Portland November 13 - June 1: Java/Android track',
+  '2017 Seattle October 9 - April 27: Ruby/Rails track',
+  '2017 Seattle November 13 - June 1: C#/.NET track'
 ]
 
 feature 'leads created when application filled out' do
