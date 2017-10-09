@@ -1,12 +1,9 @@
 require 'rails_helper'
 
 CURRENT_TRACKS = [
-  '2017 Portland October 9 - April 27: CSS/React track',
   '2017 Portland November 13 - June 1: Java/Android track',
   '2018 Portland January 2 - July 6: Ruby/Rails track',
   '2018 Portland January 2 - July 6: C#/.NET track',
-  '2017 Seattle October 9 - April 27: Ruby/Rails track',
-  '2017 Seattle November 13 - June 1: C#/React track',
   '2018 Seattle January 2 - July 6: Ruby/Rails track'
 ]
 
