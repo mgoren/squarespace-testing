@@ -1,13 +1,5 @@
 require 'rails_helper'
 
-CURRENT_TRACKS = [
-  '2017 Portland November 13 - June 1: Java/Android track',
-  '2018 Portland January 2 - July 6: Ruby/Rails track',
-  '2018 Portland January 2 - July 6: C#/.NET track',
-  '2018 Portland January 3 - April 11: Part-time, evening Intro to Programming'
-  '2018 Seattle January 2 - July 6: C#/React track',
-]
-
 feature 'leads created when application filled out' do
   let(:close_io_client) { Closeio::Client.new(ENV['CLOSE_IO_API_KEY'], false) }
   let(:phone) { '+1234567890' }
@@ -33,16 +25,14 @@ feature 'leads created when application filled out' do
   }
 
   scenario '/apply' do
-    index = 1
-    reset_index = CURRENT_TRACKS.select {|name| name.include? 'Portland'}.count
-    CURRENT_TRACKS.each do |current_track|
+    CURRENT_TRACKS.each_with_index do |current_track, index|
       parttime = current_track.downcase.include?('part-time')
       location = current_track.split[1]
       track = current_track.split(': ').last.split(' ').first unless parttime
-      contact_name = "Automated Test-#{location}-#{index}"
-      gclid = "test_gclid_#{index}"
-      sqf_source = "test_sqf_source_#{index}"
-      email = "automated-test-#{location.downcase}-#{index}@example.com"
+      contact_name = "Automated Test-#{location}-#{index+1}"
+      gclid = "test_gclid_#{index+1}"
+      sqf_source = "test_sqf_source_#{index+1}"
+      email = "automated-test-#{location.downcase}-#{index+1}@example.com"
       lead = close_io_client.list_leads('email': email)[:data].first
       expect(lead[:contacts].first[:name]).to eq contact_name
       expect(lead[:contacts].first[:emails].first[:email]).to eq email
@@ -58,8 +48,7 @@ feature 'leads created when application filled out' do
       expect(lead['custom.lcf_cLOVwwxk5KM718I4LJ4zwYpemYH4ULYL1n8qcHrio78']).to eq location
       expect(lead['custom.lcf_evscNi8u9X80uVkSZwQ9UOIZadoeewAVinWIpFIh0ST']).to eq gclid
       expect(lead['custom.lcf_QwLH5hV1Nzu6Np0tT3GpnBoW4GhXmeOWO7SBJwIxUjc']).to eq sqf_source
-      puts "PASSED /apply: #{current_track} (#{index})"
-      index == reset_index ? index = 1 : index += 1
+      puts "PASSED /apply: #{current_track} (#{index+1})"
     end
   end
 

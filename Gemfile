@@ -40,6 +40,7 @@ group :development, :test do
   gem 'closeio'
   gem 'dotenv-rails'
   gem 'hashie'
+  gem 'selenium-webdriver'
 end
 
 group :development do
