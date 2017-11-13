@@ -4,15 +4,6 @@ feature 'leads created when application filled out' do
   let(:close_io_client) { Closeio::Client.new(ENV['CLOSE_IO_API_KEY'], false) }
   let(:phone) { '+1234567890' }
   let(:email) { 'example.com' }
-  let(:address) {
-    {
-      'address_1': 'test address',
-      'city': 'Portland',
-      'state': 'OR',
-      'zipcode': '12345',
-      'country': 'US'
-    }
-  }
   let(:fields) {
     {
       'status_label': 'Applicant - Potential',
@@ -37,9 +28,6 @@ feature 'leads created when application filled out' do
       expect(lead[:contacts].first[:name]).to eq contact_name
       expect(lead[:contacts].first[:emails].first[:email]).to eq email
       expect(lead[:contacts].first[:phones].first[:phone]).to eq phone
-      address.keys.each do |key|
-        expect(lead[:addresses].first[key]).to eq address[key]
-      end
       fields.keys.each do |key|
         expect(lead[key]).to eq fields[key]
       end
@@ -65,9 +53,6 @@ feature 'leads created when application filled out' do
     expect(lead[:contacts].first[:name]).to eq contact_name
     expect(lead[:contacts].first[:emails].first[:email]).to eq email
     expect(lead[:contacts].first[:phones].first[:phone]).to eq phone
-    address.keys.each do |key|
-      expect(lead[:addresses].first[key]).to eq address[key]
-    end
     fields.keys.each do |key|
       expect(lead[key]).to eq fields[key]
     end
