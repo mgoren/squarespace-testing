@@ -17,9 +17,7 @@ feature 'leads created when application filled out' do
 
   scenario '/apply' do
     CURRENT_TRACKS.each_with_index do |current_track, index|
-      parttime = current_track.downcase.include?('part-time')
       location = current_track.split[1]
-      track = current_track.split(': ').last.split(' ').first unless parttime
       contact_name = "Automated Test-#{location}-#{index+1}"
       gclid = "test_gclid_#{index+1}"
       sqf_source = "test_sqf_source_#{index+1}"
@@ -31,9 +29,7 @@ feature 'leads created when application filled out' do
       fields.keys.each do |key|
         expect(lead[key]).to eq fields[key]
       end
-      expect(lead['custom.lcf_K2JfqWIJDcI40MfvV2IYmFdgXWUWF49kn3u1Ah0URTJ']).to eq current_track
-      expect(lead['custom.lcf_raALxiPv1Pyj0UjzlZooDPM3LzYe7GVBUeCBnFfp1Xi']).to eq track
-      expect(lead['custom.lcf_cLOVwwxk5KM718I4LJ4zwYpemYH4ULYL1n8qcHrio78']).to eq location
+      expect(lead['custom.lcf_GrOe1vSEWCpdfHpOaCiEchiYTzlGzg7HpL4rICb2bJh']).to eq get_applied(current_track)
       expect(lead['custom.lcf_evscNi8u9X80uVkSZwQ9UOIZadoeewAVinWIpFIh0ST']).to eq gclid
       expect(lead['custom.lcf_QwLH5hV1Nzu6Np0tT3GpnBoW4GhXmeOWO7SBJwIxUjc']).to eq sqf_source
       puts "PASSED /apply: #{current_track} (#{index+1})"
@@ -42,9 +38,7 @@ feature 'leads created when application filled out' do
 
   scenario '/apply-now' do
     current_track = CURRENT_TRACKS.first
-    parttime = current_track.downcase.include?('part-time')
     location = 'Portland'
-    track = current_track.split(': ').last.split(' ').first unless parttime
     contact_name = "Automated Apply-Now"
     gclid = "test_gclid_1"
     sqf_source = "test_sqf_source_1"
@@ -56,11 +50,26 @@ feature 'leads created when application filled out' do
     fields.keys.each do |key|
       expect(lead[key]).to eq fields[key]
     end
-    expect(lead['custom.lcf_K2JfqWIJDcI40MfvV2IYmFdgXWUWF49kn3u1Ah0URTJ']).to eq current_track
-    expect(lead['custom.lcf_raALxiPv1Pyj0UjzlZooDPM3LzYe7GVBUeCBnFfp1Xi']).to eq track
-    expect(lead['custom.lcf_cLOVwwxk5KM718I4LJ4zwYpemYH4ULYL1n8qcHrio78']).to eq location
+    expect(lead['custom.lcf_GrOe1vSEWCpdfHpOaCiEchiYTzlGzg7HpL4rICb2bJh']).to eq get_applied(current_track)
     expect(lead['custom.lcf_evscNi8u9X80uVkSZwQ9UOIZadoeewAVinWIpFIh0ST']).to eq gclid
     expect(lead['custom.lcf_QwLH5hV1Nzu6Np0tT3GpnBoW4GhXmeOWO7SBJwIxUjc']).to eq sqf_source
     puts "PASSED /apply-now"
+  end
+
+  def get_applied(current_track)
+    components = current_track.split
+    track = components[7]
+    track = 'Part-time' if track == 'Part-time,'
+    office = components[1].upcase.slice(0,3)
+    office = 'PDX' if office == 'POR'
+    year = components[0]
+    start_month = components[2].slice(0,3)
+    start_day = components[3]
+    end_month = components[5].slice(0,3)
+    end_day = components[6].chomp(':')
+    start = year + '-' + ('0' + Date::ABBR_MONTHNAMES.find_index(start_month).to_s).split(//).last(2).join
+    applied = "#{start} #{office} #{track} (#{start_month} #{start_day} - #{end_month} #{end_day})"
+    applied = 'PT: ' + applied if track == 'Part-time'
+    applied
   end
 end
