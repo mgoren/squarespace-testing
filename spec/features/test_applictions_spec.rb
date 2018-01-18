@@ -22,12 +22,12 @@ feature 'leads created when application filled out' do
       gclid = "test_gclid_#{index+1}"
       sqf_source = "test_sqf_source_#{index+1}"
       email = "automated-test-#{location.downcase}-#{index+1}@example.com"
-      lead = close_io_client.list_leads('email': email)[:data].first
-      expect(lead[:contacts].first[:name]).to eq contact_name
-      expect(lead[:contacts].first[:emails].first[:email]).to eq email
-      expect(lead[:contacts].first[:phones].first[:phone]).to eq phone
+      lead = close_io_client.list_leads('email': email)['data'].first
+      expect(lead['contacts'].first['name']).to eq contact_name
+      expect(lead['contacts'].first['emails'].first['email']).to eq email
+      expect(lead['contacts'].first['phones'].first['phone']).to eq phone
       fields.keys.each do |key|
-        expect(lead[key]).to eq fields[key]
+        expect(lead[key.to_s]).to eq fields[key]
       end
       expect(lead['custom.lcf_GrOe1vSEWCpdfHpOaCiEchiYTzlGzg7HpL4rICb2bJh']).to eq get_applied(current_track)
       expect(lead['custom.lcf_evscNi8u9X80uVkSZwQ9UOIZadoeewAVinWIpFIh0ST']).to eq gclid
