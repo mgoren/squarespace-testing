@@ -35,12 +35,12 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
   gem 'launchy'
-  gem 'capybara'
   gem 'rspec-rails'
   gem 'closeio'
   gem 'dotenv-rails'
   gem 'hashie'
-  gem 'selenium-webdriver'
+  gem 'capybara'
+  gem 'capybara-selenium'
 end
 
 group :development do
