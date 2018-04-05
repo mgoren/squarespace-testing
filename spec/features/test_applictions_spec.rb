@@ -33,6 +33,7 @@ feature 'leads created when application filled out' do
       expect(lead['custom.lcf_evscNi8u9X80uVkSZwQ9UOIZadoeewAVinWIpFIh0ST']).to eq gclid
       expect(lead['custom.lcf_QwLH5hV1Nzu6Np0tT3GpnBoW4GhXmeOWO7SBJwIxUjc']).to eq sqf_source
       puts "PASSED /apply: #{current_track} (#{index+1})"
+      close_io_client.delete_lead(lead['id'])
     end
   end
 
