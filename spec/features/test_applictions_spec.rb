@@ -29,7 +29,11 @@ feature 'leads created when application filled out' do
       fields.keys.each do |key|
         expect(lead[key.to_s]).to eq fields[key]
       end
-      expect(lead['custom.lcf_GrOe1vSEWCpdfHpOaCiEchiYTzlGzg7HpL4rICb2bJh']).to eq get_applied(current_track)
+      if current_track.include?('Part-time')
+        expect(lead['custom.lcf_iInuJajOx6zKuSR28JjSaSEJPc7iU2oQ2EqgsNkzGlR']).to eq get_applied(current_track)
+      else
+        expect(lead['custom.lcf_GrOe1vSEWCpdfHpOaCiEchiYTzlGzg7HpL4rICb2bJh']).to eq get_applied(current_track)
+      end
       expect(lead['custom.lcf_evscNi8u9X80uVkSZwQ9UOIZadoeewAVinWIpFIh0ST']).to eq gclid
       expect(lead['custom.lcf_QwLH5hV1Nzu6Np0tT3GpnBoW4GhXmeOWO7SBJwIxUjc']).to eq sqf_source
       puts "PASSED /apply: #{current_track} (#{index+1})"
