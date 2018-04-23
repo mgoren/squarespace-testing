@@ -11,7 +11,8 @@ describe 'form filling' do
       page.within_frame('wufooFormz12e0pp21gzvlw1') do
         fill_in 'Field11', with: 'Automated'
         fill_in 'Field12', with: "Test-#{location}-#{index+1}"
-        fill_in 'Field1312', with: 'test pronouns'
+        find('#Field1319_3').set(true)
+        fill_in 'Field1319_other', with: 'test pronouns'
         fill_in 'Field13', with: "automated-test-#{location.downcase}-#{index+1}@example.com"
         fill_in 'Field14', with: '123-456-7890'
         select location, from: "Field254"
