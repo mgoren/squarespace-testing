@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'leads created when application filled out' do
   let(:close_io_client) { Closeio::Client.new(ENV['CLOSE_IO_API_KEY'], false) }
-  let(:phone) { '+1234567890' }
+  let(:phone) { '+11234567890' }
   let(:email) { 'example.com' }
   let(:fields) {
     {
