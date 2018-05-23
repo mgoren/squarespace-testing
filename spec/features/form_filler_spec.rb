@@ -22,10 +22,10 @@ describe 'form filling' do
         find('#Field775_0').set(true)
         find('#Field877_0').set(true)
         find('#Field1083_0').set(true)
-        click_button 'Apply!'
+        click_button 'Sign up!'
       end
       sleep 5
-      expect(page).to have_content 'Thanks for applying!'
+      expect(page).to have_content 'Thanks for signing up!'
     end
   end
 end
