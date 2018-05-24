@@ -45,6 +45,7 @@ feature 'leads created when application filled out' do
     components = current_track.split
     track = components[7]
     track = 'Part-time' if track == 'Part-time,'
+    track = 'Front End Development' if track == 'Front'
     office = components[1].upcase.slice(0,3)
     office = 'PDX' if office == 'POR'
     office = 'WEB' if office == 'ONL'
