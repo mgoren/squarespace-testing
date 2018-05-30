@@ -22,7 +22,7 @@ describe 'form filling' do
         find('#Field775_0').set(true)
         find('#Field877_0').set(true)
         find('#Field1083_0').set(true)
-        click_button 'Sign up!'
+        click_button 'Apply!'
       end
       sleep 5
       expect(page).to have_content 'Thanks for signing up!'
