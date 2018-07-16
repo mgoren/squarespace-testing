@@ -10,7 +10,7 @@ describe 'form filling' do
       sleep 5
       page.within_frame('wufooFormz12e0pp21gzvlw1') do
         fill_in 'Field11', with: 'Automated'
-        fill_in 'Field12', with: "Test-#{location}-#{index+1}"
+        fill_in 'Field12', with: "Test"
         find('#Field1319_3').set(true)
         fill_in 'Field1319_other', with: 'test pronouns'
         fill_in 'Field13', with: "automated-test-#{location.downcase}-#{index+1}@example.com"

@@ -18,7 +18,7 @@ feature 'leads created when application filled out' do
   scenario '/apply' do
     CURRENT_TRACKS.each_with_index do |current_track, index|
       location = current_track.split[1]
-      contact_name = "Automated Test-#{location}-#{index+1}"
+      contact_name = "Automated Test"
       gclid = "test_gclid_#{index+1}"
       sqf_source = "test_sqf_source_#{index+1}"
       email = "automated-test-#{location.downcase}-#{index+1}@example.com"
