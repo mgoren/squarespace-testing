@@ -17,12 +17,11 @@ describe 'form filling' do
         fill_in 'Field14', with: '123-456-7890'
         select location, from: "Field254"
         select track, from: location_fields[location]
-        fill_in 'Field261', with: 'test reason'
         find('#Field774_0').set(true)
         find('#Field775_0').set(true)
         find('#Field877_0').set(true)
         find('#Field1083_0').set(true)
-        click_button 'Apply!'
+        click_button 'Sign up!'
       end
       sleep 5
       expect(page).to have_content 'Thanks for signing up!'
