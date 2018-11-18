@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Fill out application with every possibility:
+`# rspec spec/features/form_filler_spec.rb`
 
-Things you may want to cover:
+2. Wait a minute or more to be sure CRM entries have been created.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3. Test that applications have been created correctly in CRM. This also auto-deletes the entries after testing:
+`# rspec spec/features/test_applictions_spec.rb`
