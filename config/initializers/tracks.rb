@@ -1,6 +1,6 @@
 CURRENT_TRACKS = [
-  '2019 Seattle January 7 - July 5: C#/React track',
-  '2019 Seattle January 2 - April 10: Part-time, evening Intro to Programming',
-  '2019 Portland January 7 - July 5: Front End Development track',
-  '2019 Portland January 2 - April 10: Part-time, evening Intro to Programming'
+  '2019 Portland March 18 - September 20: C#/React track',
+  '2019 Seattle March 18 - September 20: C#/React track',
+  '2019 Portland April 15 - July 24: Part-time, evening Intro to Programming',
+  '2019 Seattle April 15 - July 24: Part-time, evening Intro to Programming'
 ]
