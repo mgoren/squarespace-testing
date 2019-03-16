@@ -16,8 +16,11 @@ feature 'leads created when application filled out' do
   }
 
   scenario '/apply' do
-    CURRENT_TRACKS.each_with_index do |current_track, index|
-      location = current_track.split[1]
+    CURRENT_TRACKS.each_with_index do |track, index|
+      location = track.split[3]
+      location = 'Portland' if location == 'PDX'
+      location = 'Seattle' if location == 'SEA'
+      location = 'Online' if location == 'WEB'
       contact_name = "Automated Test"
       gclid = "test_gclid_#{index+1}"
       sqf_source = "test_sqf_source_#{index+1}"
@@ -29,31 +32,11 @@ feature 'leads created when application filled out' do
       fields.keys.each do |key|
         expect(lead[key.to_s]).to eq fields[key]
       end
-      expect(lead['custom.lcf_GrOe1vSEWCpdfHpOaCiEchiYTzlGzg7HpL4rICb2bJh']).to eq get_applied(current_track)
+      expect(lead['custom.lcf_GrOe1vSEWCpdfHpOaCiEchiYTzlGzg7HpL4rICb2bJh']).to eq track
       expect(lead['custom.lcf_evscNi8u9X80uVkSZwQ9UOIZadoeewAVinWIpFIh0ST']).to eq gclid
       expect(lead['custom.lcf_QwLH5hV1Nzu6Np0tT3GpnBoW4GhXmeOWO7SBJwIxUjc']).to eq sqf_source
-      puts "PASSED /apply: #{current_track} (#{index+1})"
+      puts "PASSED /apply: #{track} (#{index+1})"
       close_io_client.delete_lead(lead['id'])
     end
-  end
-
-  def get_applied(current_track)
-    components = current_track.split
-    track = components[7]
-    track = 'Part-time' if track == 'Part-time,'
-    track = 'Front End Development' if track == 'Front'
-    office = components[1].upcase.slice(0,3)
-    office = 'PDX' if office == 'POR'
-    office = 'WEB' if office == 'ONL'
-    track = 'Online' if office == 'WEB'
-    year = components[0]
-    start_month = components[2].slice(0,3)
-    start_day = components[3]
-    end_month = components[5].slice(0,3)
-    end_day = components[6].chomp(':')
-    start = year + '-' + ('0' + Date::ABBR_MONTHNAMES.find_index(start_month).to_s).split(//).last(2).join
-    applied = "#{start} #{office} #{track} (#{start_month} #{start_day} - #{end_month} #{end_day})"
-    applied = 'PT: ' + applied if track == 'Part-time' || track == 'Online'
-    applied
   end
 end

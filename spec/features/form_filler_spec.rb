@@ -3,7 +3,10 @@ require 'rails_helper'
 describe 'form filling' do
   it 'fills out /apply form for each track', js: true do
     CURRENT_TRACKS.each_with_index do |track, index|
-      location = track.split[1]
+      location = track.split[3]
+      location = 'Portland' if location == 'PDX'
+      location = 'Seattle' if location == 'SEA'
+      location = 'Online' if location == 'WEB'
       location_fields = { 'Portland' => 'Field256', 'Seattle' => 'Field258', 'Online' => 'Field1314' }
       visit "https://www.epicodus.com/?gclid=test_gclid_#{index+1}&sqf_source=test_sqf_source_#{index+1}"
       visit "https://www.epicodus.com/apply"
