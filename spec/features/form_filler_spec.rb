@@ -7,7 +7,7 @@ describe 'form filling' do
       location = 'Portland' if location == 'PDX'
       location = 'Seattle' if location == 'SEA'
       location = 'Online' if location == 'WEB'
-      location_fields = { 'Portland' => 'Field256', 'Seattle' => 'Field258', 'Online' => 'Field1314' }
+      location_fields = { 'Portland' => 'Field256', 'Seattle' => 'Field258', 'Online' => 'Field1323' }
       visit "https://www.epicodus.com/?gclid=test_gclid_#{index+1}&sqf_source=test_sqf_source_#{index+1}"
       visit "https://www.epicodus.com/apply"
       sleep 5
