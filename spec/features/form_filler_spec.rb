@@ -9,13 +9,13 @@ describe 'form filling' do
       location = 'Online' if location == 'WEB'
       location_fields = { 'Portland' => 'Field256', 'Seattle' => 'Field258', 'Online' => 'Field1323' }
       visit "https://www.epicodus.com/?gclid=test_gclid_#{index+1}&sqf_source=test_sqf_source_#{index+1}"
-      visit "https://www.epicodus.com/apply"
+      visit "https://www.epicodus.com/sign-up"
       sleep 5
       page.within_frame('wufooFormz12e0pp21gzvlw1') do
-        fill_in 'Field11', with: 'Automated'
-        fill_in 'Field12', with: "Test"
-        fill_in 'Field13', with: "automated-test-#{location.downcase}-#{index+1}@example.com"
-        fill_in 'Field14', with: '123-456-7890'
+        fill_in 'Field11', with: 'Manual'
+        fill_in 'Field12', with: "Test-#{location}-#{index+1}"
+        fill_in 'Field13', with: "manual-test-#{location.downcase}-#{index+1}@mortalwombat.net"
+        fill_in 'Field14', with: "#{index}#{index}#{index}-#{index+1}#{index+1}#{index+1}-#{index+2}#{index+2}#{index+2}#{index+2}"
         select location, from: "Field254"
         select track, from: location_fields[location]
         find('#Field774_0').set(true) # over 18
