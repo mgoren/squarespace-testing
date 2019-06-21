@@ -25,7 +25,7 @@ describe 'form filling' do
         find('#Field1083_0').set(true) # heard about epicodus
         click_button 'Sign up!'
       end
-      sleep 5
+      sleep 15
       expect(page).to have_content 'Thanks for signing up!'
     end
   end
